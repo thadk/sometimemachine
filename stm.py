@@ -22,8 +22,8 @@ cur.execute("""PRAGMA locking_mode=EXCLUSIVE""")
 cur.execute("""PRAGMA journal_mode=DELETE""")
 
 query = """insert into osm_changeset
-    (rowid, user_id, min_lon, min_lat, max_lon, max_lat, closed_at, num_changes)
-    values (?, ?, ?, ?, ?, ?, ?, ?)"""
+    (rowid, user_id, min_lon, min_lat, max_lon, max_lat, created_at, closed_at, num_changes)
+    values (?, ?, ?, ?, ?, ?, ?, ?, ?)"""
 
 
 update_query = """update osm_changeset SET msg=? WHERE rowid = ?"""
@@ -37,7 +37,8 @@ def save(attrib):
         float(attrib.get('min_lat', 0)),
         float(attrib.get('max_lon', 0)),
         float(attrib.get('max_lat', 0)),
-        int(parse(attrib["created_at"]).strftime('%s')),
+        int(parse(attrib["created_at"]).timestamp(),
+        int(parse(attrib["closed_at"]).timestamp(),
         int(attrib['num_changes'])))
     if (attrib_id % 100000 == 0):
         conn.commit()

@@ -1,3 +1,4 @@
+# ROWID is implicit.
 CREATE TABLE osm_changeset (
   user_id INTEGER,
   min_lon REAL,
