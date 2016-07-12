@@ -37,8 +37,8 @@ def save(attrib):
         float(attrib.get('min_lat', 0)),
         float(attrib.get('max_lon', 0)),
         float(attrib.get('max_lat', 0)),
-        int(parse(attrib["created_at"]).timestamp(),
-        int(parse(attrib["closed_at"]).timestamp(),
+        int(parse(attrib["created_at"]).timestamp()),
+        int(parse(attrib["closed_at"]).timestamp()),
         int(attrib['num_changes'])))
     if (attrib_id % 100000 == 0):
         conn.commit()
